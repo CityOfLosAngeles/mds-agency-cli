@@ -1,0 +1,29 @@
+{
+  "name": "mds-agency-cli",
+  "version": "0.1.0",
+  "description": "Simple CLI for MDS-Agency",
+  "main": "mds-agency-cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ellis-assoc/mds-agency-cli.git"
+  },
+  "keywords": [
+    "mds",
+    "cli",
+    "agency"
+  ],
+  "author": "Ellis and Associates",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ellis-assoc/mds-agency-cli/issues"
+  },
+  "homepage": "https://github.com/ellis-assoc/mds-agency-cli#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "request": "^2.88.0",
+    "yargs": "^12.0.5"
+  }
+}
