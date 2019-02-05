@@ -116,10 +116,20 @@ async function makeSecureClient() {
         return sendPost(`${baseUrl}/vehicles/telemetry`, body)
     }
 
+    async function sendWipe(wipe) {
+        // log('sending body:', body.length, body.slice(0, 100), '...')
+        if (!wipe || !wipe.device_id) {
+            return 'missing device_id'
+        } else {
+            return sendGet(`${baseUrl}/admin/wipe/${wipe.device_id}`)
+        }
+    }
+
     return Promise.resolve({
         sendVehicle,
         sendEvent,
         sendTelemetry,
+        sendWipe
     })
 }
 
@@ -134,16 +144,20 @@ if (!env.CLIENT_ID || !env.CLIENT_SECRET) {
 
 async function main() {
     const client = await makeSecureClient()
+    const json = JSON.parse(argv._[1])
     switch (argv._[0]) {
         case 'v':
         case 'vehicle':
-            return client.sendVehicle(JSON.parse(argv._[1]))
+            return client.sendVehicle(json)
         case 'e':
         case 'event':
-            return client.sendEvent(JSON.parse(argv._[1]))
+            return client.sendEvent(json)
         case 't':
         case 'telemetry':
-            return client.sendTelemetry(JSON.parse(argv._[1]))
+            return client.sendTelemetry(json)
+        case 'w':
+        case 'wipe':
+            return client.sendWipe(json)
         default:
             return Promise.reject('"' + argv._[0] + '" is not vehicle, event, or telemetry')
     }
@@ -153,14 +167,16 @@ async function main() {
 main().then((result) => {
     log('result:', result)
 }, (failure) => {
-    if (failure.slice(0,2)==='{"') {
+    if (failure.slice && failure.slice(0, 2) === '{"') {
         failure = JSON.parse(failure)
     }
     if (failure.error_description) {
         log(failure.error_description + ' (' + failure.error + ')')
     } else if (failure.result) {
-        log(failure.result)        
+        log(failure.result)
     } else {
         log('failure:', failure)
     }
+}).catch((err) => {
+    log('exception:', err.stack)
 })
