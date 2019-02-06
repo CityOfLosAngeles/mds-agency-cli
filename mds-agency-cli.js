@@ -10,27 +10,27 @@ const env = process.env
 const log = console.log.bind(console)
 
 async function makeSecureClient() {
-    // get the auth0 access token 
+    // get the OAuth access token 
     async function getAccessToken() {
 
         return new Promise((resolve, reject) => {
-            const auth0_body = {
+            const auth_body = {
                 client_id: env.CLIENT_ID,
                 client_secret: env.CLIENT_SECRET,
                 audience: 'https://sandbox.ladot.io',
                 grant_type: 'client_credentials'
             }
 
-            const auth0_request = {
+            const auth_request = {
                 method: 'POST',
-                url: 'https://ladot.auth0.com/oauth/token',
+                url: 'https://auth.ladot.io/oauth/token',
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify(auth0_body)
+                body: JSON.stringify(auth_body)
             }
 
-            request(auth0_request, (error, response, body) => {
+            request(auth_request, (error, response, body) => {
                 if (error) {
                     reject(err)
                 } else {
