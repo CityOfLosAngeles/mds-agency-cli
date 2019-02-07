@@ -16,6 +16,7 @@
     limitations under the License.
  */
 
+const fs = require('fs')
 const request = require('request')
 const {
     argv
@@ -151,15 +152,33 @@ if (argv._.length < 2) {
     log('usage: mds-cli [vehicle|event|telemetry] params...')
     process.exit(0)
 }
+
 if (!env.CLIENT_ID || !env.CLIENT_SECRET) {
-    console.log('need CLIENT_ID and CLIENT_SECRET')
+    log('need CLIENT_ID and CLIENT_SECRET')
     process.exit(0)
 }
 
 async function main() {
     const client = await makeSecureClient()
-    const json = JSON.parse(argv._[1])
-    switch (argv._[0]) {
+    const payload = argv._[1]
+    let json
+    if (payload.endsWith('.json')) {
+        try {
+            json = JSON.parse(fs.readFileSync(payload).toString())
+        } catch (err) {
+            log('failed to read "' + payload + '" (' + err.message + ')')
+            process.exit(1)
+        }
+    } else {
+        try {
+            json = JSON.parse(payload)
+        } catch (err) {
+            log('malformed json "' + payload + '" (' + err.message + ')')
+            process.exit(1)
+        }
+    }
+    const verb = argv._[0]
+    switch (verb) {
         case 'v':
         case 'vehicle':
             return client.sendVehicle(json)
@@ -173,14 +192,14 @@ async function main() {
         case 'wipe':
             return client.sendWipe(json)
         default:
-            return Promise.reject('"' + argv._[0] + '" is not vehicle, event, or telemetry')
+            return Promise.reject('"' + verb + '" is not vehicle, event, telemetry, or wipe')
     }
-    // parse args
 }
 
 main().then((result) => {
     log(result)
 }, (failure) => {
+    // TODO use payload response type instead of peering into body
     if (failure.slice && failure.slice(0, 2) === '{"') {
         failure = JSON.parse(failure)
     }
