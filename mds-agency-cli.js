@@ -120,7 +120,7 @@ async function makeSecureClient() {
     async function sendEvent(event) {
         const body = JSON.stringify(event)
         // log('sending body:', body.length, body.slice(0, 100), '...')
-        return sendPost(`${baseUrl}/vehicles/${event.device_id}/event`, body)
+        return sendPost(`${baseUrl}/vehicles/${event.telemetry.device_id}/event`, body)
     }
 
     async function sendTelemetry(telemetry) {
