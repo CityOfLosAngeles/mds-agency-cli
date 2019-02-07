@@ -124,8 +124,12 @@ async function makeSecureClient() {
     }
 
     async function sendTelemetry(telemetry) {
+        // accommodate single element, if that's what we were sent
+        if (!Array.isArray(telemetry)) {
+            telemetry = [telemetry]
+        }
         const body = JSON.stringify({
-            data: [telemetry]
+            data: telemetry
         })
         // log('sending body:', body.length, body.slice(0, 100), '...')
         return sendPost(`${baseUrl}/vehicles/telemetry`, body)
