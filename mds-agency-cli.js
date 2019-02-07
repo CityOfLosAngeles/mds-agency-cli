@@ -1,5 +1,21 @@
 #!/usr/local/bin/node
 
+/*
+    Copyright 2019 Ellis and Associates Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+ */
+
 const request = require('request')
 const {
     argv
@@ -68,7 +84,7 @@ async function makeSecureClient() {
     }
 
     async function sendPost(url, body) {
-        log('POST', url)
+        log('POST', url, body)
         return new Promise((resolve, reject) => {
             const post_request = {
                 method: 'POST',
@@ -101,16 +117,14 @@ async function makeSecureClient() {
     }
 
     async function sendEvent(event) {
-        const body = JSON.stringify({
-            data: event
-        })
+        const body = JSON.stringify(event)
         // log('sending body:', body.length, body.slice(0, 100), '...')
         return sendPost(`${baseUrl}/vehicles/${event.device_id}/event`, body)
     }
 
     async function sendTelemetry(telemetry) {
         const body = JSON.stringify({
-            data: telemetry
+            data: [telemetry]
         })
         // log('sending body:', body.length, body.slice(0, 100), '...')
         return sendPost(`${baseUrl}/vehicles/telemetry`, body)
@@ -165,7 +179,7 @@ async function main() {
 }
 
 main().then((result) => {
-    log('result:', result)
+    log(result)
 }, (failure) => {
     if (failure.slice && failure.slice(0, 2) === '{"') {
         failure = JSON.parse(failure)
