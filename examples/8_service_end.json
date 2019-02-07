@@ -1,0 +1,18 @@
+{
+  "timestamp": 1549537000000, 
+  "telemetry": {
+    "timestamp": 1549537000000, 
+    "charge": 0.7, 
+    "gps": {
+      "altitude": 25, 
+      "lat": 34.050632, 
+      "lng": -118.197836, 
+      "speed": 0, 
+      "heading": 150, 
+      "hdop": 10,
+      "satellites": 4
+    }, 
+    "device_id": "1da84b36-83fc-4b4d-bbf9-50c15a72f918"
+  }, 
+  "event_type": "service_end"
+}

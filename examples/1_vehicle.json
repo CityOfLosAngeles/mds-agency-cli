@@ -1,0 +1,9 @@
+{
+  "device_id":"1da84b36-83fc-4b4d-bbf9-50c15a72f918",
+  "vehicle_id":"12345abcdef", 
+  "type":"scooter", 
+  "propulsion":["electric"], 
+  "year":2019, 
+  "mfgr":"LADOT", 
+  "model":"T" 
+}

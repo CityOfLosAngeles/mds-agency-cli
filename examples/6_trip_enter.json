@@ -1,0 +1,19 @@
+{
+  "timestamp": 1549535400000, 
+  "telemetry": {
+    "timestamp": 1549535400000, 
+    "charge": 0.8, 
+    "gps": {
+      "altitude": 25, 
+      "lat": 34.054846,  
+      "lng": -118.192336, 
+      "speed": 10, 
+      "heading": 50, 
+      "hdop": 10,
+      "satellites": 4
+    }, 
+    "device_id": "1da84b36-83fc-4b4d-bbf9-50c15a72f918"
+  }, 
+  "event_type": "trip_enter",
+  "trip_id": "55b1db3c-d507-4593-82af-e40b00f322f7"
+}

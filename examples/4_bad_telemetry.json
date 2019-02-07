@@ -1,0 +1,44 @@
+[
+  {
+    "timestamp": 1549530001000, 
+    "charge": 0.998111, 
+    "gps": {
+      "altitude": 25, 
+      "lat": 34.217510, 
+      "lng": -118.423005, 
+      "speed": 5, 
+      "heading": 40, 
+      "hdop": 10,
+      "satellites": 4
+    }, 
+    "device_id": "1da84b36-83fc-4b4d-bbf9-50c15a72f918"
+  },
+  {
+    "timestamp": 1549530002000, 
+    "charge": 0.996222, 
+    "gps": {
+      "altitude": 25, 
+      "lat": "hamster", 
+      "lng": -118.422640, 
+      "speed": 8, 
+      "heading": 50, 
+      "hdop": 10,
+      "satellites": 4
+    }, 
+    "device_id": "1da84b36-83fc-4b4d-bbf9-50c15a72f918"
+  },
+  {
+    "timestamp": 1549530003000, 
+    "charge": 0.994333, 
+    "gps": {
+      "altitude": 25, 
+      "lat": 34.217900, 
+      "lng": -118.422763, 
+      "speed": 12, 
+      "heading": 60, 
+      "hdop": 10,
+      "satellites": 4
+    }, 
+    "device_id": "1da84b36-83fc-4b4d-bbf9-50c15a72f918"
+  }
+]
