@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ellis-assoc/mds-agency-cli.git"
+    "url": "git+https://github.com/CityOfLosAngeles/mds-agency-cli.git"
   },
   "keywords": [
     "mds",
@@ -18,9 +18,9 @@
   "author": "Ellis and Associates",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/ellis-assoc/mds-agency-cli/issues"
+    "url": "https://github.com/CityOfLosAngeles/mds-agency-cli/issues"
   },
-  "homepage": "https://github.com/ellis-assoc/mds-agency-cli#readme",
+  "homepage": "https://github.com/CityOfLosAngeles/mds-agency-cli#readme",
   "dependencies": {
     "dotenv": "^6.2.0",
     "request": "^2.88.0",
